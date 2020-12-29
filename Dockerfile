@@ -11,7 +11,7 @@ RUN apt-get update -y\
 # create a directory and extract R and HTSlib
 RUN mkdir Tools && cd Tools\
 && wget https://cran.r-project.org/src/base/R-4/R-4.0.2.tar.gz\
-&& wget https://github.com/samtools/htslib/releases/download/1.10.2/htslib-1.10.2.$
+&&  wget https://github.com/samtools/htslib/releases/download/1.10.2/htslib-1.10.2.tar.bz2\
 && tar -zxvf R-4.0.2.tar.gz && tar -jxvf htslib-1.10.2.tar.bz2
 # compile R standalone math library
 RUN cd Tools/R-4.0.2/ && ./configure\
