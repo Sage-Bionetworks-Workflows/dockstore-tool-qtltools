@@ -52,7 +52,7 @@ RUN cd R-4.0.2/ && ./configure \
 RUN cd htslib-1.10.2/ && ./configure && make
 
 # download QTLtools
-RUN git clone https://github.com/qtltools/qtltools.git
+RUN git clone https://github.com/qtltools/qtltools/releases/tag/1.3.1
 
 # update file paths and compile QTLtools
 RUN cd qtltools \
