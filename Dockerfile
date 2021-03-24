@@ -76,7 +76,7 @@ RUN cp qtltools/bin/QTLtools /usr/local/bin/
 
 # extract and compile bcftools
 RUN wget https://github.com/samtools/bcftools/releases/download/1.10/bcftools-1.10.tar.bz2 \
-     -O bcftools.tar.bz2
+     -O bcftools.tar.bz2 \
  && tar -xjvf bcftools.tar.bz2
  && cd bcftools-1.10
  && make
