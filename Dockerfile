@@ -34,7 +34,12 @@ RUN apt-get update --yes \
     libreadline-dev \
     libxt-dev \
     libpcre2-dev \
-    libcurl4-openssl-dev 
+    libcurl4-openssl-dev \
+    python3-venv python3-pip \
+    tabix
+
+# install synapseclient
+RUN pip3 install synapseclient 
 
 # create a directory and extract R and HTSlib
 WORKDIR Tools
@@ -68,3 +73,13 @@ RUN cd qtltools && make install && exec bash
 
 # copy binary
 RUN cp qtltools/bin/QTLtools /usr/local/bin/
+
+# extract and compile bcftools
+RUN wget https://github.com/samtools/bcftools/releases/download/1.10/bcftools-1.10.tar.bz2 \
+     -O bcftools.tar.bz2
+ && tar -xjvf bcftools.tar.bz2
+ && cd bcftools-1.10
+ && make
+ && make prefix=/usr/local/bin install
+ && ln -s /usr/local/bin/bin/bcftools /usr/bin/bcftools
+
