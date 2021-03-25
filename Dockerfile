@@ -36,7 +36,9 @@ RUN apt-get update --yes \
     libpcre2-dev \
     libcurl4-openssl-dev \
     python3-venv python3-pip \
-    tabix
+    tabix \
+    parallel \
+    r-base-core
 
 # install synapseclient
 RUN pip3 install synapseclient 
@@ -83,3 +85,8 @@ RUN wget https://github.com/samtools/bcftools/releases/download/1.10/bcftools-1.
  && make prefix=/usr/local/bin install \
  && ln -s /usr/local/bin/bin/bcftools /usr/bin/bcftools
 
+# install R packages
+RUN R -e "install.packages('argparse')" \
+ && R -e "install.packages('glue')" \
+ && R -e "install.packages('dplyr')" \
+ && R -e "install.packages('readr')"
